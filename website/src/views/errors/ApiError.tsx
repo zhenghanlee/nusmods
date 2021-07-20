@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import RandomKawaii from 'views/components/RandomKawaii';
 import Title from 'views/components/Title';
 import styles from './ErrorPage.scss';
+import { breakpointUp } from 'utils/css';
 
 type Props = {
   children?: React.ReactNode;
@@ -46,6 +47,17 @@ export default class ApiError extends React.PureComponent<Props> {
           </h1>
 
           <p>This could be because your device is offline or NUSMods is down :(</p>
+          {/* TODO: Remove hacky message after we figure out what is wrong with Elastic Search. */}
+          {dataName === 'module information' && (
+            <>
+              <strong>Module search might be having issues at the moment. 😟</strong>
+              <p>
+                If it isn't working, please try the module search{' '}
+                {window.innerWidth < breakpointUp('md').minWidth && 'on a desktop browser '}on the
+                top right corner of the page instead.
+              </p>
+            </>
+          )}
 
           {retry && (
             <div>
