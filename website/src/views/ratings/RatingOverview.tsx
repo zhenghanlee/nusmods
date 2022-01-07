@@ -12,7 +12,7 @@ interface RatingOverviewProps {
 const RatingOverview = ({ name, reviews, type }: RatingOverviewProps) => {
   const ratings: (1 | 2 | 3 | 4 | 5)[] = [5, 4, 3, 2, 1];
   const count = [0, 0, 0, 0, 0];
-  const average = reviews.reduce((a, b) => a + b[type], 0) / reviews.length || 1;
+  const average = reviews.reduce((a, b) => a + b[type], 0) / reviews.length || 0;
   reviews.forEach((e) => {
     count[Math.abs(e[type] - 5)] += 1;
   });

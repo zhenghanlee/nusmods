@@ -26,6 +26,11 @@ export const semesters = [
   'Semester 2 - AY2020/2021',
 ];
 
+export const semCodeToText = (code: string) => {
+  const vals = code.split('-');
+  return `Semester ${vals[3]} - AY${vals[1]}/${vals[2]}`;
+};
+
 export const lecturers = 'PRABAWA Adi Yoga Sidi\nChristian Von Der WETH\nHUANG Zhiyong';
 
 export type Review = {

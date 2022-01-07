@@ -238,7 +238,7 @@ const ModulePageContent: React.FC<Props> = ({ module, archiveYear }) => {
               {(isOnline) =>
                 true ? (
                   // isOnline ? (
-                  <RatingsContainer />
+                  <RatingsContainer moduleCode={module.moduleCode} />
                 ) : (
                   // <div className="row">
                   //   <div className="col-xl-4">

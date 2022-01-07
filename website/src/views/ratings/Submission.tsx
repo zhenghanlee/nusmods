@@ -15,7 +15,11 @@ const Submission = (props: Props) => {
       alert('The input matric number is invalid!');
       return;
     }
-    props.onSubmit(state);
+    if (state.name === '') {
+      props.onSubmit({ ...state, name: 'Anonymous' });
+    } else {
+      props.onSubmit(state);
+    }
   };
 
   const [state, setState]: [Review, (newState: any) => void] = useState({

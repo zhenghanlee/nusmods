@@ -1,20 +1,9 @@
-import { PureComponent } from 'react';
 import Downshift, { ChildrenFunction } from 'downshift';
-import { connect } from 'react-redux';
 import classnames from 'classnames';
-import { Link } from 'react-router-dom';
-import { AlertTriangle, Calendar, ChevronDown, Download, FileText, Image } from 'react-feather';
-
-import { Semester } from 'types/modules';
-import { SemTimetableConfig } from 'types/timetables';
-
-import exportApi from 'apis/export';
-import { downloadAsIcal, SUPPORTS_DOWNLOAD } from 'actions/export';
-import Online from 'views/components/Online';
-import Modal from 'views/components/Modal';
+import { ChevronDown } from 'react-feather';
 import ComponentMap from 'utils/ComponentMap';
 import { Counter } from 'utils/react';
-import { State as StoreState } from 'types/state';
+import { semCodeToText } from './types';
 
 import styles from './SemesterDropdown.scss';
 
@@ -44,7 +33,7 @@ const SemesterDropdown = ({ value, dropDown, onClick }: SemesterDropDownProps) =
           type="button"
           onClick={() => toggleMenu()}
         >
-          {value}
+          {semCodeToText(value)}
           <ChevronDown className={classnames(styles.chevron, 'svg-small')} />
         </button>
         <div
@@ -59,7 +48,7 @@ const SemesterDropdown = ({ value, dropDown, onClick }: SemesterDropDownProps) =
                 'dropdown-selected': counter.matches(highlightedIndex),
               })}
             >
-              {semester}
+              {semCodeToText(semester)}
             </button>
           ))}
         </div>

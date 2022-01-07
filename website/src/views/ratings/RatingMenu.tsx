@@ -9,9 +9,9 @@ interface RatingMenuProps {
 
 const RatingMenu = ({ reviews }: RatingMenuProps) => {
   const [menu, setMenu] = useState(menuOptions[0]);
-  const workloadAvg = reviews.reduce((a, b) => a + b.workload, 0) / reviews.length || 1;
-  const difficultyAvg = reviews.reduce((a, b) => a + b.difficulty, 0) / reviews.length || 1;
-  const teachingStaffAvg = reviews.reduce((a, b) => a + b.teachingStaff, 0) / reviews.length || 1;
+  const workloadAvg = reviews.reduce((a, b) => a + b.workload, 0) / reviews.length || 0;
+  const difficultyAvg = reviews.reduce((a, b) => a + b.difficulty, 0) / reviews.length || 0;
+  const teachingStaffAvg = reviews.reduce((a, b) => a + b.teachingStaff, 0) / reviews.length || 0;
 
   return (
     <div className={styles.ratingMenu}>

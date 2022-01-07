@@ -62,7 +62,12 @@ const SubmissionContainer = ({
               </button>
             </div>
             <div className="modal-body">
-              <Submission onSubmit={onSubmit} />
+              <Submission
+                onSubmit={(review) => {
+                  onSubmit(review);
+                  onCloseButtonClick();
+                }}
+              />
             </div>
           </div>
         </div>
