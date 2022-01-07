@@ -31,6 +31,7 @@ import ErrorBoundary from 'views/errors/ErrorBoundary';
 import useScrollToTop from 'views/hooks/useScrollToTop';
 import styles from './ModulePageContent.scss';
 import ReportError from './ReportError';
+import RatingsContainer from 'views/ratings/RatingsContainer';
 
 export type Props = {
   module: Module;
@@ -236,7 +237,8 @@ const ModulePageContent: React.FC<Props> = ({ module, archiveYear }) => {
             <h2 className={styles.sectionHeading}>Review and Discussion</h2>
             <Online isLive={false}>
               {(isOnline) =>
-                isOnline ? (
+                true ? (
+                // isOnline ? (
                   <div className="row">
                     <div className="col-xl-4">
                       <div className={classnames('alert alert-warning', styles.reviewsBanner)}>
@@ -269,7 +271,8 @@ const ModulePageContent: React.FC<Props> = ({ module, archiveYear }) => {
                       </div>
                     </div>
                     <div className="col-xl-8 order-xl-first">
-                      <DisqusComments {...disqusConfig} />
+                      {/* <DisqusComments {...disqusConfig} /> */}
+                      <RatingsContainer />
                     </div>
                   </div>
                 ) : (
