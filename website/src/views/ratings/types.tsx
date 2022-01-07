@@ -2,11 +2,22 @@ export const difficulty = { 1: 'Very Easy', 2: 'Easy', 3: 'Moderate', 4: 'Hard',
 export const workload = { 1: '0-4 hrs', 2: '5-8 hrs', 3: '9-12 hrs', 4: '13-16 hrs', 5: '17+ hrs' };
 export const teachingStaff = {
   1: 'Not Good',
-  2: 'Below Average',
+  2: 'Fair',
   3: 'Average',
   4: 'Good',
   5: 'Excellent',
 };
+
+type Menu = {
+  name: string;
+  value: 'workload' | 'difficulty' | 'teachingStaff';
+};
+
+export const menuOptions: Menu[] = [
+  { name: 'Weekly Workload', value: 'workload' },
+  { name: 'Content Diffulty', value: 'difficulty' },
+  { name: 'Teaching Staff', value: 'teachingStaff' },
+];
 
 export const semesters = [
   'Semester 1 - AY2021/2022',
@@ -54,7 +65,7 @@ export const reviews: Review[] = [
   {
     name: 'David',
     studentNumber: undefined,
-    workload: 1,
+    workload: 5,
     difficulty: 3,
     teachingStaff: 5,
     review: "I'm so blur!",

@@ -1,0 +1,33 @@
+.ratingMenu {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 10px;
+}
+
+.ratingMenu button {
+  background-color: white;
+  border: 1px solid var(--gray-lighter);
+  padding: 10px 24px;
+  cursor: pointer;
+  width: 480px;
+  margin-right: 80px;
+  display: block;
+  height: 33.333%;
+  align-items: center;
+}
+
+.ratingMenu button:first-child {
+  border-radius: 5px 5px 0px 0px;
+}
+
+.ratingMenu button:last-child {
+  border-radius: 0px 0px 5px 5px;
+}
+
+.ratingMenu button:hover,
+.ratingMenu button:focus,
+.ratingMenu button::selection,
+.ratingMenuActive {
+  border-color: #ff5138 !important;
+  outline: none;
+}
