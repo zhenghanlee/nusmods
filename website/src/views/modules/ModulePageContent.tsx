@@ -14,7 +14,7 @@ import { NAVTAB_HEIGHT } from 'views/layout/Navtabs';
 import ModuleTree from 'views/modules/ModuleTree';
 import LinkModuleCodes from 'views/components/LinkModuleCodes';
 import CommentCount from 'views/components/disqus/CommentCount';
-import DisqusComments from 'views/components/disqus/DisqusComments';
+// import DisqusComments from 'views/components/disqus/DisqusComments';
 import Online from 'views/components/Online';
 import Warning from 'views/errors/Warning';
 import SideMenu from 'views/components/SideMenu';
@@ -29,9 +29,9 @@ import { Archive, Check } from 'react-feather';
 import ErrorBoundary from 'views/errors/ErrorBoundary';
 
 import useScrollToTop from 'views/hooks/useScrollToTop';
+import RatingsContainer from 'views/ratings/RatingsContainer';
 import styles from './ModulePageContent.scss';
 import ReportError from './ReportError';
-import RatingsContainer from 'views/ratings/RatingsContainer';
 
 export type Props = {
   module: Module;
@@ -238,7 +238,7 @@ const ModulePageContent: React.FC<Props> = ({ module, archiveYear }) => {
             <Online isLive={false}>
               {(isOnline) =>
                 true ? (
-                // isOnline ? (
+                  // isOnline ? (
                   <div className="row">
                     <div className="col-xl-4">
                       <div className={classnames('alert alert-warning', styles.reviewsBanner)}>

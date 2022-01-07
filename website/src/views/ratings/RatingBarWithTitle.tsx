@@ -1,16 +1,15 @@
-import RatingBar from "./RatingBar"; 
+import RatingBar from './RatingBar';
 
 type Props = {
-    title: string, 
-    rating: number, 
-    style?: any 
-}
+  title: string;
+  rating: number;
+};
 
-const RatingBarWithTitle = ({title, rating} : Props) => {
-    return <div style={{width: "100%", margin: 8}}>
-        <text style={{fontSize: 14}}>{title}</text>
-        <RatingBar rating={rating}/>
-    </div>
-}
+const RatingBarWithTitle = ({ title, rating }: Props) => (
+  <div style={{ width: '100%', margin: 8 }}>
+    <text style={{ fontSize: 14 }}>{title}</text>
+    <RatingBar rating={rating} />
+  </div>
+);
 
-export default RatingBarWithTitle; 
+export default RatingBarWithTitle;
