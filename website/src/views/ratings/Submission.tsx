@@ -7,6 +7,8 @@ type Props = {
 };
 
 const Submission = (props: Props) => {
+  const onClickSubmit = (evt: React.FormEvent<HTMLButtonElement>) => {};
+
   const [state, setState]: [Review, (newState: any) => void] = useState({
     name: '',
     studentNumber: '',
@@ -16,42 +18,63 @@ const Submission = (props: Props) => {
     review: '',
   });
   return (
-    <div>
-      {getInputField('Name', (val) => setState({ ...state, name: val }))};
-      {getInputField('Student Number', (val) => setState({ ...state, studentNumber: val }))}
-      {getRadioButtons(difficulty, (val) => setState({ ...state, difficulty: val }))}
-      {getRadioButtons(teachingStaff, (val) => setState({ ...state, teachingStaff: val }))}
-      {getRadioButtons(workload, (val) => setState({ ...state, workload: val }))}
-      {getInputField('Review', (val) => setState({ ...state, review: val }))}
-    </div>
+    <form style={{ display: 'flex', flexDirection: 'column' }}>
+      {getInputField('Name', (val) => setState({ ...state, name: val }), false)}
+      {getInputField('Student Number', (val) => setState({ ...state, studentNumber: val }), true)}
+      {getRadioButtons('Difficulty', difficulty, (val) => setState({ ...state, difficulty: val }))}
+      {getRadioButtons('Teaching Staff', teachingStaff, (val) =>
+        setState({ ...state, teachingStaff: val }),
+      )}
+      {getRadioButtons('Workload', workload, (val) => setState({ ...state, workload: val }))}
+      {getTextField('Review', (val) => setState({ ...state, review: val }))}
+      <button type="submit" onSubmit={onClickSubmit}>
+        Submit
+      </button>
+    </form>
   );
 };
 
-const getInputField = (label: string, onChangeHandler: (str: string) => void) => {
+const getInputField = (
+  label: string,
+  onChangeHandler: (str: string) => void,
+  isRequired: boolean,
+) => {
   const onInputChange: (evt: React.ChangeEvent<HTMLInputElement>) => void = (evt) =>
     onChangeHandler(evt.currentTarget.value);
   return (
     <div className="form-group">
       <label>{label}</label>
-      <input type="text" id="name" className="form-control" required onChange={onInputChange} />
+      <input type="text" className="form-control" required={isRequired} onChange={onInputChange} />
     </div>
   );
 };
 
-const getRadioButtons = (obj: any, onChangeHandler: (val: number) => void) => {
-  const onClickHandler: (evt: React.MouseEvent<HTMLInputElement>) => void = (evt) =>
-    onChangeHandler(evt.currentTarget.valueAsNumber);
+const getTextField = (label: string, onChangeHandler: (str: string) => void) => {
+  const onInputChange: (evt: React.ChangeEvent<HTMLTextAreaElement>) => void = (evt) =>
+    onChangeHandler(evt.currentTarget.value);
+  return (
+    <div className="form-group">
+      <label>{label}</label>
+      <textarea className="form-control" onChange={onInputChange} />
+    </div>
+  );
+};
 
-  const getInputElement = (value: number, field: string) => {
+const getRadioButtons = (label: string, obj: any, onChangeHandler: (val: number) => void) => {
+  const onClickHandler: (evt: React.MouseEvent<HTMLInputElement>) => void = (evt) =>
+    onChangeHandler(parseInt(evt.currentTarget.value));
+
+  const getInputElement = (val: number, field: string) => {
     return (
-      <div className="form-check">
+      <div className="form-check" style={{ margin: 'auto' }}>
         <input
           className="form-check-input"
           type="radio"
-          name="flexRadioDisabled"
+          name={label}
           id="flexRadioDisabled"
-          value={value}
+          value={val}
           onClick={onClickHandler}
+          required
         />
         <label className="form-check-label" htmlFor="flexRadioDisabled">
           {field}
@@ -60,8 +83,15 @@ const getRadioButtons = (obj: any, onChangeHandler: (val: number) => void) => {
     );
   };
 
-  const keys: number[] = Object.keys(obj).map(parseInt);
-  return <form aria-required>{keys.map((key) => getInputElement(key, obj[key]))}</form>;
+  const keys: number[] = Object.keys(obj).map((key) => parseInt(key));
+  return (
+    <fieldset id={label}>
+      <label>{label}</label>
+      <div className="form-check" style={{ display: 'flex' }}>
+        {keys.map((key) => getInputElement(key, obj[key]))}
+      </div>
+    </fieldset>
+  );
 };
 
 const verifyStudentNo: (str: string) => boolean = (str) => {
