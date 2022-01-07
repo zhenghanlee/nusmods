@@ -1,8 +1,8 @@
 import { FC } from 'react';
-// import classnames from 'classnames';
-// import styles from './LecturersForm.scss';
+import classnames from 'classnames';
 
 type Props = {
+  className?: string;
   isEditing: boolean;
   lecturers: string;
   onChangeHandler: React.FormEventHandler<HTMLTextAreaElement>;
@@ -12,7 +12,7 @@ type Props = {
 const LecturersForm: FC<Props> = (props) => (
   <form onSubmit={props.onSubmitHandler}>
     <div
-      className="form-group"
+      className={classnames(props.className, 'form-group')}
       style={{
         display: 'flex',
       }}
