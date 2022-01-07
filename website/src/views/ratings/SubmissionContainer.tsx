@@ -1,12 +1,21 @@
 import Submission from './Submission';
 import { Review } from './types';
+import SemesterDropdown from './SemesterDropdown';
 import styles from './SubmissionContainer.scss';
 
-type Props = {
+type SubmissionContainerProps = {
   onSubmit: (review: Review) => void;
+  selectedSemester: string;
+  semesters: string[];
+  onClick: (e: string) => void;
 };
 
-const SubmissionContainer = (props: Props) => {
+const SubmissionContainer = ({
+  onSubmit,
+  selectedSemester,
+  semesters,
+  onClick,
+}: SubmissionContainerProps) => {
   const onOpenButtonClick = () => {
     const modal = document.getElementById('submissionContainer');
     if (!modal) return;
@@ -18,9 +27,17 @@ const SubmissionContainer = (props: Props) => {
   };
   return (
     <>
-      <button type="button" className="btn btn-primary" onClick={onOpenButtonClick}>
-        Add Review
-      </button>
+      <div style={{ width: '320px', paddingTop: '3px' }}>
+        <SemesterDropdown value={selectedSemester} dropDown={semesters} onClick={onClick} />
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={onOpenButtonClick}
+          style={{ width: '320px', marginTop: '3px' }}
+        >
+          Add Review
+        </button>
+      </div>
       <div
         className={styles.modal}
         id="submissionContainer"
@@ -45,7 +62,7 @@ const SubmissionContainer = (props: Props) => {
               </button>
             </div>
             <div className="modal-body">
-              <Submission onSubmit={props.onSubmit} />
+              <Submission onSubmit={onSubmit} />
             </div>
           </div>
         </div>

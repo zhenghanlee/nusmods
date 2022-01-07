@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState, FC } from 'react';
 import LecturersForm from './LecturersForm';
 
 const LecturersContainerComponent: FC = () => {
@@ -21,12 +21,14 @@ const LecturersContainerComponent: FC = () => {
   };
 
   return (
-    <LecturersForm
-      isEditing={isEditingLecturers}
-      lecturers={lecturers}
-      onChangeHandler={onChangeLecturers}
-      onSubmitHandler={onSubmitLecturersForm}
-    />
+    <div style={{ width: '480px', marginRight: '80px' }}>
+      <LecturersForm
+        isEditing={isEditingLecturers}
+        lecturers={lecturers}
+        onChangeHandler={onChangeLecturers}
+        onSubmitHandler={onSubmitLecturersForm}
+      />
+    </div>
   );
 };
 

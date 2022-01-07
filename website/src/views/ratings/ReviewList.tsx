@@ -6,7 +6,7 @@ type Props = {
 };
 
 const ReviewList = (props: Props) => (
-  <div>
+  <div style={{ paddingRight: '52px' }}>
     {props.reviews.map((r) => (
       <ReviewComment review={r} />
     ))}
