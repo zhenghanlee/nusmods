@@ -26,16 +26,18 @@ const Submission = (props: Props) => {
     review: '',
   });
   return (
-    <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onClickSubmit}>
-      {getInputField('Name', (val) => setState({ ...state, name: val }), false)}
+    <form onSubmit={onClickSubmit}>
+      {getInputField('Name (Optional)', (val) => setState({ ...state, name: val }), false)}
       {getInputField('Student Number', (val) => setState({ ...state, studentNumber: val }), true)}
       {getRadioButtons('Difficulty', difficulty, (val) => setState({ ...state, difficulty: val }))}
       {getRadioButtons('Teaching Staff', teachingStaff, (val) =>
         setState({ ...state, teachingStaff: val }),
       )}
       {getRadioButtons('Workload', workload, (val) => setState({ ...state, workload: val }))}
-      {getTextField('Review', (val) => setState({ ...state, review: val }))}
-      <button type="submit">Submit</button>
+      {getTextField('Review (Optional)', (val) => setState({ ...state, review: val }))}
+      <button className="btn btn-outline-primary" type="submit">
+        Submit
+      </button>
     </form>
   );
 };
@@ -48,7 +50,7 @@ const getInputField = (
   const onInputChange: (evt: React.ChangeEvent<HTMLInputElement>) => void = (evt) =>
     onChangeHandler(evt.currentTarget.value);
   return (
-    <div className="form-group">
+    <div style={{ marginTop: '20px', marginBottom: '20px' }}>
       <label>{label}</label>
       <input type="text" className="form-control" required={isRequired} onChange={onInputChange} />
     </div>
@@ -59,7 +61,7 @@ const getTextField = (label: string, onChangeHandler: (str: string) => void) => 
   const onInputChange: (evt: React.ChangeEvent<HTMLTextAreaElement>) => void = (evt) =>
     onChangeHandler(evt.currentTarget.value);
   return (
-    <div className="form-group">
+    <div className="form-group" style={{ marginTop: '20px', marginBottom: '20px' }}>
       <label>{label}</label>
       <textarea className="form-control" onChange={onInputChange} />
     </div>
@@ -89,9 +91,12 @@ const getRadioButtons = (label: string, obj: any, onChangeHandler: (val: number)
 
   const keys: number[] = Object.keys(obj).map((key) => parseInt(key));
   return (
-    <fieldset id={label}>
+    <fieldset id={label} style={{ marginTop: '20px', marginBottom: '20px' }}>
       <label>{label}</label>
-      <div className="form-check" style={{ display: 'flex' }}>
+      <div
+        className="form-check"
+        style={{ display: 'grid', gridAutoFlow: 'column', gridAutoColumns: '1fr' }}
+      >
         {keys.map((key) => getInputElement(key, obj[key]))}
       </div>
     </fieldset>
