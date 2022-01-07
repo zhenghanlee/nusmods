@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Review, difficulty, teachingStaff, workload } from './types';
+import './Submission.scss';
 
 type Props = {
   onSubmit: (review: Review) => void;
@@ -29,11 +30,11 @@ const Submission = (props: Props) => {
     <form onSubmit={onClickSubmit}>
       {getInputField('Name (Optional)', (val) => setState({ ...state, name: val }), false)}
       {getInputField('Student Number', (val) => setState({ ...state, studentNumber: val }), true)}
+      {getRadioButtons('Workload', workload, (val) => setState({ ...state, workload: val }))}
       {getRadioButtons('Difficulty', difficulty, (val) => setState({ ...state, difficulty: val }))}
       {getRadioButtons('Teaching Staff', teachingStaff, (val) =>
         setState({ ...state, teachingStaff: val }),
       )}
-      {getRadioButtons('Workload', workload, (val) => setState({ ...state, workload: val }))}
       {getTextField('Review (Optional)', (val) => setState({ ...state, review: val }))}
       <button className="btn btn-outline-primary" type="submit">
         Submit
