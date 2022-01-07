@@ -1,11 +1,11 @@
-type Props = {
-}
+import React from 'react';
+import RatingMenu from './RatingMenu';
+import { reviews } from './types';
 
-type State = { 
-}
+const RatingsContainer = () => (
+  <div>
+    <RatingMenu />
+  </div>
+);
 
-const RatingsContainer = () => { 
-    return <div>Test</div>; 
-}
-
-export default RatingsContainer; 
+export default RatingsContainer;

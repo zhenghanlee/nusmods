@@ -1,3 +1,3 @@
 const RatingBar = () => {
-    return <div>DummyBar</div>; 
-}
+  return <div>DummyBar</div>;
+};

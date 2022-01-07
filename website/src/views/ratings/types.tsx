@@ -8,6 +8,17 @@ export const teachingStaff = {
   5: 'Excellent',
 };
 
+type Menu = {
+  name: string;
+  value: 'workload' | 'difficulty' | 'teachingStaff';
+};
+
+export const menuOptions: Menu[] = [
+  { name: 'Weekly Workload', value: 'workload' },
+  { name: 'Content Diffulty', value: 'difficulty' },
+  { name: 'Teaching Staff', value: 'teachingStaff' },
+];
+
 export const semesters = [
   'Semester 1 - AY2021/2022',
   'Semester 2 - AY2021/2022',

@@ -14,7 +14,6 @@ import { NAVTAB_HEIGHT } from 'views/layout/Navtabs';
 import ModuleTree from 'views/modules/ModuleTree';
 import LinkModuleCodes from 'views/components/LinkModuleCodes';
 import CommentCount from 'views/components/disqus/CommentCount';
-import DisqusComments from 'views/components/disqus/DisqusComments';
 import Online from 'views/components/Online';
 import Warning from 'views/errors/Warning';
 import SideMenu from 'views/components/SideMenu';
@@ -29,9 +28,9 @@ import { Archive, Check } from 'react-feather';
 import ErrorBoundary from 'views/errors/ErrorBoundary';
 
 import useScrollToTop from 'views/hooks/useScrollToTop';
+import RatingsContainer from 'views/ratings/RatingsContainer';
 import styles from './ModulePageContent.scss';
 import ReportError from './ReportError';
-import RatingsContainer from 'views/ratings/RatingsContainer';
 
 export type Props = {
   module: Module;
@@ -238,44 +237,45 @@ const ModulePageContent: React.FC<Props> = ({ module, archiveYear }) => {
             <Online isLive={false}>
               {(isOnline) =>
                 true ? (
-                // isOnline ? (
-                  <div className="row">
-                    <div className="col-xl-4">
-                      <div className={classnames('alert alert-warning', styles.reviewsBanner)}>
-                        <h3>Hi There!</h3>
-                        <p>
-                          We would like to encourage everyone who enjoyed using NUSMods to
-                          contribute back to the community by writing reviews for modules that you
-                          have taken before. Your efforts will go a long way in building up a
-                          vibrant and rich NUS community.
-                        </p>
-                        <strong>Please note:</strong>
-                        <ol className={styles.modReviewDescription}>
-                          <li>
-                            Because the experience of each module will differ according to the
-                            professor teaching the module, at the start of your review, please state
-                            the semester taken and the name of the professor who taught the module
-                            in that semester.
-                          </li>
-                          <li>
-                            Other students will read your review to get an idea of what taking the
-                            module will be like. If you'd like to give feedback about the module to
-                            NUS, please use the official Student Feedback system as NUS does not
-                            monitor these reviews.
-                          </li>
-                          <li>
-                            The claims made in these reviews have not been verified by NUS or
-                            NUSMods. Please take all claims with a grain of salt.
-                          </li>
-                        </ol>
-                      </div>
-                    </div>
-                    <div className="col-xl-8 order-xl-first">
-                      {/* <DisqusComments {...disqusConfig} /> */}
-                      <RatingsContainer />
-                    </div>
-                  </div>
+                  // isOnline ? (
+                  <RatingsContainer />
                 ) : (
+                  // <div className="row">
+                  //   <div className="col-xl-4">
+                  //     <div className={classnames('alert alert-warning', styles.reviewsBanner)}>
+                  //       <h3>Hi There!</h3>
+                  //       <p>
+                  //         We would like to encourage everyone who enjoyed using NUSMods to
+                  //         contribute back to the community by writing reviews for modules that you
+                  //         have taken before. Your efforts will go a long way in building up a
+                  //         vibrant and rich NUS community.
+                  //       </p>
+                  //       <strong>Please note:</strong>
+                  //       <ol className={styles.modReviewDescription}>
+                  //         <li>
+                  //           Because the experience of each module will differ according to the
+                  //           professor teaching the module, at the start of your review, please state
+                  //           the semester taken and the name of the professor who taught the module
+                  //           in that semester.
+                  //         </li>
+                  //         <li>
+                  //           Other students will read your review to get an idea of what taking the
+                  //           module will be like. If you'd like to give feedback about the module to
+                  //           NUS, please use the official Student Feedback system as NUS does not
+                  //           monitor these reviews.
+                  //         </li>
+                  //         <li>
+                  //           The claims made in these reviews have not been verified by NUS or
+                  //           NUSMods. Please take all claims with a grain of salt.
+                  //         </li>
+                  //       </ol>
+                  //     </div>
+                  //   </div>
+                  //   <div className="col-xl-8 order-xl-first">
+                  //     {/* <DisqusComments {...disqusConfig} /> */}
+
+                  //   </div>
+                  // </div>
                   <Warning
                     message="Comments not available while offline. Make sure you are
                              online and refresh to view comments."

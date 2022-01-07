@@ -1,0 +1,30 @@
+.ratingMenu {
+  display: flex;
+}
+
+.ratingMenu button {
+  background-color: white; /* Green background */
+  border: 1px solid var(--gray-lighter);
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 480px; /* Set a width if needed */
+  margin-right: 80px;
+  display: block; /* Make the buttons appear below each other */
+  height: 33.333%;
+}
+
+.ratingMenu button:first-child {
+  border-radius: 5px 5px 0px 0px;
+}
+
+.ratingMenu button:last-child {
+  border-radius: 0px 0px 5px 5px;
+}
+
+.ratingMenu button:hover,
+.ratingMenu button:focus,
+.ratingMenu button::selection,
+.ratingMenuActive {
+  border-color: #ff5138 !important;
+  outline: none;
+}
