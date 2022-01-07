@@ -1,4 +1,6 @@
 import { FC } from 'react';
+// import classnames from 'classnames';
+// import styles from './LecturersForm.scss';
 
 type Props = {
   isEditing: boolean;
@@ -8,21 +10,41 @@ type Props = {
 };
 
 const LecturersForm: FC<Props> = (props) => (
-  <form className="row" onSubmit={props.onSubmitHandler}>
-    <div>
-      <label className="row" htmlFor="lecturers">
-        Lecturer(s)
-      </label>
-      <button className="row" type="submit">
-        {props.isEditing ? 'Save' : 'Edit'}
-      </button>
-    </div>
-    <div>
+  <form onSubmit={props.onSubmitHandler}>
+    <div
+      className="form-group"
+      style={{
+        display: 'flex',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          paddingRight: '0.75rem',
+        }}
+      >
+        <label htmlFor="lecturers" style={{ textAlign: 'center' }}>
+          Lecturer(s)
+        </label>
+        <button
+          className="btn btn-outline-primary"
+          type="submit"
+          style={{
+            width: '100%',
+          }}
+        >
+          {props.isEditing ? 'Save' : 'Edit'}
+        </button>
+      </div>
       <textarea
+        className="form-control"
         id="lecturers"
         value={props.lecturers}
         onChange={props.onChangeHandler}
         disabled={!props.isEditing}
+        rows={3}
       />
     </div>
   </form>

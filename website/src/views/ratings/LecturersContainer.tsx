@@ -3,7 +3,9 @@ import LecturersForm from './LecturersForm';
 
 const LecturersContainerComponent: FC = () => {
   const [isEditingLecturers, setIsEditingLecturers] = useState(false);
-  const [lecturers, setLecturers] = useState('');
+  const [lecturers, setLecturers] = useState(
+    `PRABAWA Adi Yoga Sidi\nChristian Von Der WETH\nHUANG Zhiyong`,
+  );
 
   const toggleIsEditingLecturers = () => {
     setIsEditingLecturers((previousState) => !previousState);
@@ -19,14 +21,12 @@ const LecturersContainerComponent: FC = () => {
   };
 
   return (
-    <>
-      <LecturersForm
-        isEditing={isEditingLecturers}
-        lecturers={lecturers}
-        onChangeHandler={onChangeLecturers}
-        onSubmitHandler={onSubmitLecturersForm}
-      />
-    </>
+    <LecturersForm
+      isEditing={isEditingLecturers}
+      lecturers={lecturers}
+      onChangeHandler={onChangeLecturers}
+      onSubmitHandler={onSubmitLecturersForm}
+    />
   );
 };
 
