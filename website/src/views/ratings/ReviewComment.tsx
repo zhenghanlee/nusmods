@@ -60,7 +60,11 @@ const ReviewComment = (props: Props) => {
         <div style={{ width: '25%', fontSize: 17, fontWeight: 'bold' }}>{props.review.name}</div>
         <RatingRow />
       </div>
-      <div>{seeMore ? props.review.review : props.review.review.substring(0, 300)}</div>
+      <div>
+        {seeMore || props.review.review.length <= 300
+          ? props.review.review
+          : `${props.review.review.substring(0, 300)}...`}
+      </div>
       {props.review.review.length > 300 ? <SeeMoreButton /> : <></>}
     </div>
   );
