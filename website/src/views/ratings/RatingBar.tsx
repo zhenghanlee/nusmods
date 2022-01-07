@@ -22,9 +22,9 @@ const RatingBar = (props: Props) => {
   const ProgressBar = () => (
     <div className="progress" style={{ flexBasis: '90%' }}>
       <div
-        className="progress-bar bg-warning"
+        className="progress-bar"
         role="progressbar"
-        style={{ width: `${percentageBar}%` }}
+        style={{ width: `${percentageBar}%`, backgroundColor: '#F99157' }}
       />
     </div>
   );

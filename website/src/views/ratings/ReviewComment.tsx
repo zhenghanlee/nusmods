@@ -43,11 +43,10 @@ const ReviewComment = (props: Props) => {
     <div
       style={{
         padding: '10px',
-        margin: '18px',
+        marginTop: '18px',
+        marginBottom: '18px',
         borderRadius: '8px',
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        borderColor: 'grey',
+        border: '1px solid var(--gray-lighter)',
       }}
     >
       <div

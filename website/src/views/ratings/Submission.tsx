@@ -70,24 +70,22 @@ const getRadioButtons = (label: string, obj: any, onChangeHandler: (val: number)
   const onClickHandler: (evt: React.MouseEvent<HTMLInputElement>) => void = (evt) =>
     onChangeHandler(parseInt(evt.currentTarget.value));
 
-  const getInputElement = (val: number, field: string) => {
-    return (
-      <div className="form-check" style={{ margin: 'auto' }}>
-        <input
-          className="form-check-input"
-          type="radio"
-          name={label}
-          id="flexRadioDisabled"
-          value={val}
-          onClick={onClickHandler}
-          required
-        />
-        <label className="form-check-label" htmlFor="flexRadioDisabled">
-          {field}
-        </label>
-      </div>
-    );
-  };
+  const getInputElement = (val: number, field: string) => (
+    <div className="form-check" style={{ margin: 'auto' }}>
+      <input
+        className="form-check-input"
+        type="radio"
+        name={label}
+        id="flexRadioDisabled"
+        value={val}
+        onClick={onClickHandler}
+        required
+      />
+      <label className="form-check-label" htmlFor="flexRadioDisabled">
+        {field}
+      </label>
+    </div>
+  );
 
   const keys: number[] = Object.keys(obj).map((key) => parseInt(key));
   return (
