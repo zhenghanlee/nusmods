@@ -7,7 +7,15 @@ type Props = {
 };
 
 const Submission = (props: Props) => {
-  const onClickSubmit = (evt: React.FormEvent<HTMLButtonElement>) => {};
+  const onClickSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    if (!state.studentNumber) return;
+    if (!verifyStudentNo(state.studentNumber)) {
+      alert('The input matric number is invalid!');
+      return;
+    }
+    props.onSubmit(state);
+  };
 
   const [state, setState]: [Review, (newState: any) => void] = useState({
     name: '',
@@ -18,7 +26,7 @@ const Submission = (props: Props) => {
     review: '',
   });
   return (
-    <form style={{ display: 'flex', flexDirection: 'column' }}>
+    <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onClickSubmit}>
       {getInputField('Name', (val) => setState({ ...state, name: val }), false)}
       {getInputField('Student Number', (val) => setState({ ...state, studentNumber: val }), true)}
       {getRadioButtons('Difficulty', difficulty, (val) => setState({ ...state, difficulty: val }))}
@@ -27,9 +35,7 @@ const Submission = (props: Props) => {
       )}
       {getRadioButtons('Workload', workload, (val) => setState({ ...state, workload: val }))}
       {getTextField('Review', (val) => setState({ ...state, review: val }))}
-      <button type="submit" onSubmit={onClickSubmit}>
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
   );
 };
@@ -103,10 +109,8 @@ const verifyStudentNo: (str: string) => boolean = (str) => {
   else return false;
 
   let sum = 0;
-  for (let i = 2; i < 7; i++) {
-    sum += weights[i] * parseInt(str[i]);
-  }
-  return 'YXWURNMLJHEAB'[sum % 13] == str[8];
+  for (let i = 0; i < 6; i++) sum += weights[i] * parseInt(str[i + 2]);
+  return 'YXWURNMLJHEAB'[sum % 13] === str[8];
 };
 
 export default Submission;
