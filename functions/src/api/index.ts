@@ -4,7 +4,11 @@ import * as routes from './routes';
 
 const api = express.Router();
 
-api.use(cors());
+api.use(
+  cors({
+    origin: ['http://localhost:8080'],
+  }),
+);
 api.use(express.json({ limit: '4mb' }));
 
 routes.add(api);
