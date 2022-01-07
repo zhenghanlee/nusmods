@@ -1,16 +1,19 @@
 .ratingMenu {
   display: flex;
+  flex-wrap: wrap;
+  padding-left: 10px;
 }
 
 .ratingMenu button {
-  background-color: white; /* Green background */
+  background-color: white;
   border: 1px solid var(--gray-lighter);
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  width: 480px; /* Set a width if needed */
+  padding: 10px 24px;
+  cursor: pointer;
+  width: 480px;
   margin-right: 80px;
-  display: block; /* Make the buttons appear below each other */
+  display: block;
   height: 33.333%;
+  align-items: center;
 }
 
 .ratingMenu button:first-child {

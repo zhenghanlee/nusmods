@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import RatingOverview from './RatingOverview';
-import { reviews, menuOptions, workload, difficulty, teachingStaff } from './types';
+import { Review, menuOptions, workload, difficulty, teachingStaff } from './types';
 import styles from './RatingMenu.scss';
 
-const RatingMenu = () => {
+interface RatingMenuProps {
+  reviews: Review[];
+}
+
+const RatingMenu = ({ reviews }: RatingMenuProps) => {
   const [menu, setMenu] = useState(menuOptions[0]);
-  const workloadAvg = reviews.reduce((a, b) => a + b.workload, 0) / reviews.length;
-  const difficultyAvg = reviews.reduce((a, b) => a + b.difficulty, 0) / reviews.length;
-  const teachingStaffAvg = reviews.reduce((a, b) => a + b.teachingStaff, 0) / reviews.length;
+  const workloadAvg = reviews.reduce((a, b) => a + b.workload, 0) / reviews.length || 1;
+  const difficultyAvg = reviews.reduce((a, b) => a + b.difficulty, 0) / reviews.length || 1;
+  const teachingStaffAvg = reviews.reduce((a, b) => a + b.teachingStaff, 0) / reviews.length || 1;
 
   return (
     <div className={styles.ratingMenu}>
@@ -31,7 +35,7 @@ const RatingMenu = () => {
                 style={{ width: `${(workloadAvg / 5) * 100}%`, backgroundColor: '#F99157' }}
               />
             </div>
-            <span style={{ fontWeight: 'bold' }}>{workloadAvg}</span>
+            <span style={{ fontWeight: 'bold' }}>{workloadAvg.toFixed(1)}</span>
           </div>
           <span style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
             {workload[Math.round(workloadAvg) as keyof typeof workload]}
@@ -56,7 +60,7 @@ const RatingMenu = () => {
                 style={{ width: `${(difficultyAvg / 5) * 100}%`, backgroundColor: '#F99157' }}
               />
             </div>
-            <span style={{ fontWeight: 'bold' }}>{difficultyAvg}</span>
+            <span style={{ fontWeight: 'bold' }}>{difficultyAvg.toFixed(1)}</span>
           </div>
           <span style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
             {difficulty[Math.round(difficultyAvg) as keyof typeof difficulty]}
@@ -81,7 +85,7 @@ const RatingMenu = () => {
                 style={{ width: `${(teachingStaffAvg / 5) * 100}%`, backgroundColor: '#F99157' }}
               />
             </div>
-            <span style={{ fontWeight: 'bold' }}>{teachingStaffAvg}</span>
+            <span style={{ fontWeight: 'bold' }}>{teachingStaffAvg.toFixed(1)}</span>
           </div>
           <span style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
             {teachingStaff[Math.round(teachingStaffAvg) as keyof typeof teachingStaff]}

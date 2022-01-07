@@ -4,7 +4,7 @@ import { reviews } from './types';
 
 const RatingsContainer = () => (
   <div>
-    <RatingMenu />
+    <RatingMenu reviews={reviews} />
   </div>
 );
 
