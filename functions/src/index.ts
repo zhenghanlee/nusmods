@@ -1,14 +1,10 @@
-import * as express from 'express';
 import * as functions from 'firebase-functions';
+import * as App from './app';
 
-const app = express();
+exports.app = functions.https.onRequest(App.server);
 
-exports.app = functions.https.onRequest(app);
-
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// GET /cs1101s
+// GET /cs1101s/ay-2020-2021-1/lecturers
+// POST /cs1101s/ay-2020-2021-1/lecturers
+// GET /cs1101s/ay-2020-2021-1/reviews
+// POST /cs1101s/ay-2020-2021-1/reviews
