@@ -39,13 +39,14 @@ const ReviewComment = (props: Props) => {
     }; 
 
     return <div style={{ 
-        padding:"20px", 
-        margin: "8px", 
+        padding:"10px", 
+        margin: "18px", 
         borderRadius: "8px", 
         borderWidth: "1px", 
         borderStyle:"solid",
         borderColor: "grey"}}>
-        <div style={{marginBottom: "20px", display: "flex", flexDirection: "row"}}>
+        <div style={{marginBottom: "20px", display: "flex", flexDirection: "row", 
+            "alignItems": "center"}}>
             <div style={{width: "25%", fontSize: 17, fontWeight:"bold"}}>{props.review.name}</div>
             <RatingRow />
         </div>
