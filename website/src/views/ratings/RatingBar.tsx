@@ -1,5 +1,3 @@
-import styles from './RatingBar.scss'; 
-
 type Props = {
     rating: number, 
     style?: any 
@@ -18,7 +16,7 @@ const RatingBar = (props: Props) => {
         return <div style={{padding: "5px", 
         flexBasis: "10%", 
         textAlign: "center",
-        fontWeight: "bold"}}>{props.rating}</div>; 
+        fontWeight: "bold"}}>{props.rating.toFixed(1)}</div>; 
     }
     const ProgressBar = () => 
             <div className='progress' style={{flexBasis: "90%"}}>
@@ -29,6 +27,7 @@ const RatingBar = (props: Props) => {
     return <div style={
         {   
             ...props.style, 
+            width: "100%",
             display: "flex",
             alignItems: "center",  
             flexDirection: "row"}
