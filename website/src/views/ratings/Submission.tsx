@@ -63,7 +63,7 @@ const getTextField = (label: string, onChangeHandler: (str: string) => void) => 
   return (
     <div className="form-group" style={{ marginTop: '20px', marginBottom: '20px' }}>
       <label>{label}</label>
-      <textarea className="form-control" onChange={onInputChange} />
+      <textarea className="form-control" onChange={onInputChange} draggable={false} />
     </div>
   );
 };
