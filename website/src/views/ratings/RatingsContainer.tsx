@@ -1,11 +1,11 @@
-type Props = {
-}
-
-type State = { 
-}
+import RatingBar from "./RatingBar";
+import ReviewList from "./ReviewList";
+import { reviews } from './types'; 
 
 const RatingsContainer = () => { 
-    return <div>Test</div>; 
+    return <div>
+        <ReviewList reviews={reviews} />
+    </div>; 
 }
 
 export default RatingsContainer; 
