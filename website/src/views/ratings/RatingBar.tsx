@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 type Props = {
   rating: number;
-  style?: any;
+  style?: React.CSSProperties | undefined;
 };
 
 const RatingBar = (props: Props) => {
@@ -14,7 +14,15 @@ const RatingBar = (props: Props) => {
 
   const percentageBar = (props.rating / maxRating) * 100;
   const RatingNumber = () => (
-    <div style={{ padding: '5px', flexBasis: '10%', textAlign: 'center', fontWeight: 'bold' }}>
+    <div
+      style={{
+        ...props.style,
+        padding: '5px',
+        flexBasis: '10%',
+        textAlign: 'center',
+        fontWeight: 'bold',
+      }}
+    >
       {props.rating.toFixed(1)}
     </div>
   );
@@ -24,6 +32,7 @@ const RatingBar = (props: Props) => {
       <div
         className="progress-bar"
         role="progressbar"
+        aria-label="Rating bar"
         style={{ width: `${percentageBar}%`, backgroundColor: '#F99157' }}
       />
     </div>
