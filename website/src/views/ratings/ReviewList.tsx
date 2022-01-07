@@ -7,9 +7,7 @@ type Props = {
 
 const ReviewList = (props: Props) => (
   <div style={{ paddingRight: '52px' }}>
-    {props.reviews.map((r) => (
-      <ReviewComment review={r} />
-    ))}
+    {props.reviews.map((r) => (r.review.length !== 0 ? <ReviewComment review={r} /> : <></>))}
   </div>
 );
 
