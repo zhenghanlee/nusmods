@@ -25,7 +25,8 @@ export const semesters = [
   'Semester 1 - AY2020/2021',
   'Semester 2 - AY2020/2021',
 ];
-export const lecturers = 'Prof Ben\nProf Seth';
+
+export const lecturers = 'PRABAWA Adi Yoga Sidi\nChristian Von Der WETH\nHUANG Zhiyong';
 
 export type Review = {
   name: string;

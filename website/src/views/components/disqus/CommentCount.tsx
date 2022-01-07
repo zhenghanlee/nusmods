@@ -42,18 +42,7 @@ export const CommentCountComponent: React.FC<Props> = ({ identifier, url, loadDi
 
   if (loadDisqusManually) return null;
 
-  return (
-    <span className={styles.comment}>
-      <span className={styles.icon}>
-        <MessageSquare aria-label="Comment count" />
-      </span>
-      <span
-        className="disqus-comment-count"
-        data-disqus-identifier={identifier}
-        data-disqus-url={url}
-      />
-    </span>
-  );
+  return <div />;
 };
 
 const CommentCount = connect((state: StoreState) => ({
