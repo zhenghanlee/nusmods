@@ -60,7 +60,7 @@ const ReviewComment = (props: Props) => {
         <div style={{ width: '25%', fontSize: 17, fontWeight: 'bold' }}>{props.review.name}</div>
         <RatingRow />
       </div>
-      <div>
+      <div style={{ whiteSpace: 'pre-line' }}>
         {seeMore || props.review.review.length <= 300
           ? props.review.review
           : `${props.review.review.substring(0, 300)}...`}
