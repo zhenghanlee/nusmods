@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Review, difficulty, teachingStaff, workload } from './types';
 import './Submission.scss';
+import { randomAnimal } from './utils';
 
 type Props = {
   onSubmit: (review: Review) => void;
@@ -21,7 +22,7 @@ const Submission = (props: Props) => {
 
   const onClickSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    if (state.name === '') props.onSubmit({ ...state, name: 'Anonymous' });
+    if (state.name === '') props.onSubmit({ ...state, name: `Anonymous ${randomAnimal()}` });
     else props.onSubmit(state);
     refreshKey();
   };

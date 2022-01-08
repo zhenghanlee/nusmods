@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { ChevronDown } from 'react-feather';
 import ComponentMap from 'utils/ComponentMap';
 import { Counter } from 'utils/react';
-import { semCodeToText } from './types';
+import { semCodeToText } from './utils';
 
 import styles from './SemesterDropdown.scss';
 
