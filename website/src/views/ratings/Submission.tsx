@@ -8,6 +8,9 @@ type Props = {
 };
 
 const Submission = (props: Props) => {
+  const [key, setKey] = useState(1);
+  const refreshKey = () => setKey(key + 1);
+
   const onClickSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (!state.studentNumber) return;
@@ -15,11 +18,9 @@ const Submission = (props: Props) => {
       alert('The input matric number is invalid!');
       return;
     }
-    if (state.name === '') {
-      props.onSubmit({ ...state, name: 'Anonymous' });
-    } else {
-      props.onSubmit(state);
-    }
+    if (state.name === '') props.onSubmit({ ...state, name: 'Anonymous' });
+    else props.onSubmit(state);
+    refreshKey();
   };
 
   const [state, setState]: [Review, (newState: any) => void] = useState({
@@ -30,8 +31,9 @@ const Submission = (props: Props) => {
     workload: 3,
     review: '',
   });
+
   return (
-    <form onSubmit={onClickSubmit}>
+    <form onSubmit={onClickSubmit} key={key}>
       {getInputField('Name (Optional)', (val) => setState({ ...state, name: val }), false)}
       {getInputField('Student Number', (val) => setState({ ...state, studentNumber: val }), true)}
       {getRadioButtons('Workload', workload, (val) => setState({ ...state, workload: val }))}
@@ -68,7 +70,7 @@ const getTextField = (label: string, onChangeHandler: (str: string) => void) => 
   return (
     <div className="form-group" style={{ marginTop: '20px', marginBottom: '20px' }}>
       <label>{label}</label>
-      <textarea className="form-control" onChange={onInputChange} draggable={false} />
+      <textarea className="form-control" onChange={onInputChange} draggable={false} rows={10} />
     </div>
   );
 };
