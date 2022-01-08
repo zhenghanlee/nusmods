@@ -48,8 +48,20 @@ const SubmissionContainer = ({
       >
         <div className={styles.content} role="document">
           <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" style={{ display: 'inline-block', marginBottom: '0' }}>
+            <div
+              className="modal-header"
+              style={{
+                borderBottom: 'thin solid lightgrey',
+              }}
+            >
+              <h5
+                className="modal-title"
+                style={{
+                  display: 'inline-block',
+                  marginBottom: '0',
+                  fontWeight: 'bold',
+                }}
+              >
                 Add Review
               </h5>
               <button

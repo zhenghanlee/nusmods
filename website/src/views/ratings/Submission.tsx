@@ -10,20 +10,7 @@ type Props = {
 const Submission = (props: Props) => {
   const [key, setKey] = useState(1);
   const refreshKey = () => setKey(key + 1);
-
-  const onClickSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    if (!state.studentNumber) return;
-    if (!verifyStudentNo(state.studentNumber)) {
-      alert('The input matric number is invalid!');
-      return;
-    }
-    if (state.name === '') props.onSubmit({ ...state, name: 'Anonymous' });
-    else props.onSubmit(state);
-    refreshKey();
-  };
-
-  const [state, setState]: [Review, (newState: any) => void] = useState({
+  const [state, setState]: [Review, (newState: any, chain?: () => void) => void] = useState({
     name: '',
     studentNumber: '',
     difficulty: 3,
@@ -32,10 +19,38 @@ const Submission = (props: Props) => {
     review: '',
   });
 
+  const onClickSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    if (!state.studentNumber || !verifyStudentNo(state.studentNumber)) {
+      return;
+    }
+    if (state.name === '') props.onSubmit({ ...state, name: 'Anonymous' });
+    else props.onSubmit(state);
+    refreshKey();
+  };
+
   return (
     <form onSubmit={onClickSubmit} key={key}>
-      {getInputField('Name (Optional)', (val) => setState({ ...state, name: val }), false)}
-      {getInputField('Student Number', (val) => setState({ ...state, studentNumber: val }), true)}
+      {getInputField('Name (Optional)', (val) => setState({ ...state, name: val }))}
+      <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+        <label style={{ fontWeight: 'bold' }}>Student Number</label>
+        <input
+          type="text"
+          className="form-control"
+          required
+          value={state.studentNumber}
+          onInvalid={(evt) =>
+            evt.currentTarget.setCustomValidity('Please enter a valid Matric Number!')
+          }
+          onInput={(evt) => evt.currentTarget.setCustomValidity('')}
+          onChange={(evt) => {
+            setState({ ...state, studentNumber: evt.currentTarget.value });
+            if (!verifyStudentNo(evt.currentTarget.value)) {
+              evt.currentTarget.setCustomValidity('Please enter a valid Matric Number!');
+            } else evt.currentTarget.setCustomValidity('');
+          }}
+        />
+      </div>
       {getRadioButtons('Workload', workload, (val) => setState({ ...state, workload: val }))}
       {getRadioButtons('Difficulty', difficulty, (val) => setState({ ...state, difficulty: val }))}
       {getRadioButtons('Teaching Staff', teachingStaff, (val) =>
@@ -49,17 +64,13 @@ const Submission = (props: Props) => {
   );
 };
 
-const getInputField = (
-  label: string,
-  onChangeHandler: (str: string) => void,
-  isRequired: boolean,
-) => {
+const getInputField = (label: string, onChangeHandler: (str: string) => void) => {
   const onInputChange: (evt: React.ChangeEvent<HTMLInputElement>) => void = (evt) =>
     onChangeHandler(evt.currentTarget.value);
   return (
     <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-      <label>{label}</label>
-      <input type="text" className="form-control" required={isRequired} onChange={onInputChange} />
+      <label style={{ fontWeight: 'bold' }}>{label}</label>
+      <input type="text" className="form-control" onChange={onInputChange} />
     </div>
   );
 };
@@ -69,7 +80,7 @@ const getTextField = (label: string, onChangeHandler: (str: string) => void) => 
     onChangeHandler(evt.currentTarget.value);
   return (
     <div className="form-group" style={{ marginTop: '20px', marginBottom: '20px' }}>
-      <label>{label}</label>
+      <label style={{ fontWeight: 'bold' }}>{label}</label>
       <textarea className="form-control" onChange={onInputChange} draggable={false} rows={10} />
     </div>
   );
@@ -80,17 +91,25 @@ const getRadioButtons = (label: string, obj: any, onChangeHandler: (val: number)
     onChangeHandler(parseInt(evt.currentTarget.value));
 
   const getInputElement = (val: number, field: string) => (
-    <div className="form-check" style={{ margin: 'auto' }}>
+    <div
+      style={{
+        margin: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+      }}
+    >
       <input
-        className="form-check-input"
         type="radio"
         name={label}
         id="flexRadioDisabled"
         value={val}
         onClick={onClickHandler}
         required
+        style={{ margin: 'auto' }}
       />
-      <label className="form-check-label" htmlFor="flexRadioDisabled">
+      <label className="form-check-label" style={{ display: 'block' }} htmlFor="flexRadioDisabled">
         {field}
       </label>
     </div>
@@ -99,7 +118,7 @@ const getRadioButtons = (label: string, obj: any, onChangeHandler: (val: number)
   const keys: number[] = Object.keys(obj).map((key) => parseInt(key));
   return (
     <fieldset id={label} style={{ marginTop: '20px', marginBottom: '20px' }}>
-      <label>{label}</label>
+      <label style={{ fontWeight: 'bold' }}>{label}</label>
       <div
         className="form-check"
         style={{ display: 'grid', gridAutoFlow: 'column', gridAutoColumns: '1fr' }}
