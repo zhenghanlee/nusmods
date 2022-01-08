@@ -21,9 +21,6 @@ const Submission = (props: Props) => {
 
   const onClickSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    if (!state.studentNumber || !verifyStudentNo(state.studentNumber)) {
-      return;
-    }
     if (state.name === '') props.onSubmit({ ...state, name: 'Anonymous' });
     else props.onSubmit(state);
     refreshKey();
